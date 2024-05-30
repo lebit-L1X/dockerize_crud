@@ -1,0 +1,7 @@
+FROM node:20-alpine
+WORKDIR /APP
+COPY . /APP
+RUN apk add npm
+RUN npm install
+EXPOSE 5000
+CMD node /APP/index.js

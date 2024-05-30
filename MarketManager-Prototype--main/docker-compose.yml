@@ -1,0 +1,28 @@
+# Services
+services:
+  # Server service
+  server:
+    build:
+      context: ./Backend
+      dockerfile: Dockerfile
+    container_name: backend
+    ports:
+      - "5000:5000"
+    environment:
+      - PGHOST=ep-solitary-dust-a1fk3z4p.ap-southeast-1.aws.neon.tech
+      - PGDATABASE=MarketManager
+      - PGUSER=kebin_owner
+      - PGPASSWORD=b7PwafhS4TyA
+      - PGPORT=5432
+
+  # Client service
+  client:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+
+    container_name: frontend
+    ports:
+      - "5173:5173"
+    depends_on:
+      - server
